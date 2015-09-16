@@ -1,0 +1,25 @@
+<div class="modal fade" id="ediModal" ng-controller="PitchController">
+  <div class="modal-dialog">
+    <div class="modal-content">      
+
+      <div class="panel panel-warning title">
+
+        <div class="panel-heading title">            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
+            <h3 class="panel-title">Edit Pitch </h3>
+        </div>
+
+        <div class="panel-body">
+          <form ng-submit="editPitch(selectedPitch)">              
+            <input type="text" ng-model="selectedPitch.title" class="form-control" placeholder="Pitch title" required><br>             
+            <textarea ng-model="selectedPitch.description" class="form-control" placeholder="Elevator pitch to reporters" required></textarea><br>
+            <input type="text" ng-model="selectedPitch.total" class="form-control" placeholder="Type of reporters you wanna talk to e.g. Tech, finance, cosmetic etc" required><br>
+            <input type="submit" value="Update" class="btn btn-warning">
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

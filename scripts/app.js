@@ -1,16 +1,21 @@
 'use strict';
 
-var app = angular.module('HelloTasksApp', [
+var app = angular.module('HelloPitchApp', [
     'ngAnimate',
     'ngResource',    
     'ngRoute',    
-    'firebase'
+    'firebase',
+    'toaster',
+    'angularMoment',
   ])
+
   .constant('FURL', 'https://hellotasks.firebaseio.com//')  
+
   .config(function ($routeProvider) {
     $routeProvider      
       .when('/', {
-        templateUrl: 'views/main.html'        
+        templateUrl: 'views/browse.html',    
+        controller: 'BrowseController'    
       })
       .when('/login', {
         templateUrl: 'views/login.html',  
@@ -20,17 +25,9 @@ var app = angular.module('HelloTasksApp', [
         templateUrl: 'views/register.html',  
         controller: 'AuthController'
       })
-      .when('/post', {
-        templateUrl: 'views/post.html',  
-        controller: 'TaskController'
-      })
-      .when('/edit/:taskId', {
-        templateUrl: 'views/edit.html',
-        controller: 'TaskController'                
-      })
-      .when('/browse', {
+      .when('/browse/:pitchId', {
         templateUrl: 'views/browse.html',
-        controller: 'TaskController'        
+        controller: 'BrowseController'        
       })
       .otherwise({
         redirectTo: '/'

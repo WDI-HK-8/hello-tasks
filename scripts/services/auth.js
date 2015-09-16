@@ -1,12 +1,12 @@
 'use strict';
 
-app.factory('Auth', function(FURL, $firebaseAuth, $firebase) {
+app.factory('Auth', function(FURL, $firebaseAuth, $firebaseObject, $firebase) {
   
   var ref = new Firebase(FURL);
+  var profileRef = ref.child('profile');
   var auth = $firebaseAuth(ref);
 
   var Auth = {
-
     user: {},
 
     createProfile: function(uid, user) {
@@ -56,7 +56,7 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebase) {
   auth.$onAuth(function(authData) {
     if(authData) {      
       angular.copy(authData, Auth.user);
-      Auth.user.profile = $firebase(ref.child('profile').child(authData.uid)).$asObject();
+      Auth.user.profile = $firebaseObject(profileRef.child(authData.uid)); 
     } else {
       if(Auth.user && Auth.user.profile){
         Auth.user.profile.$destroy();

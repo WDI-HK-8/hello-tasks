@@ -1,27 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-offset-2 col-md-8">
+
+    <div class="col-md-offset-1 col-md-4">
       <div class="list-group">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </div>
-            <input type="text" ng-model="searchTask" class="form-control" placeholder="Search">
+            <input type="text" ng-model="searchPitch" class="form-control" placeholder="Search">
           </div>  
         </div>
 
-        <!--TASK LIST-->
-        <a ng-repeat="task in tasks | filter: searchTask | orderBy: 'title'" ng-href="#/edit/{{task.$id}}" >
+        <!--PITCH LIST-->
+        <a ng-repeat="pitch in pitchs | filter: searchPitch | orderBy: 'datetime':true" ng-href="#/browse/{{pitch.$id}}" >
           <div class="list-group-item">
                 <div class="row-content">
-                    <h4 class="list-group-item-heading">{{task.title}}</h4>
+                    <h4 class="list-group-item-heading">{{pitch.title | limitTo:25}}{{pitch.title.length >25? "...":""}}</h4>
                     <span class="list-group-item-text">
-                      {{ task.description | limitTo:25}} {{task.description.length >25? "...":""}}
+                      <span am-time-ago="selectedPitch.datetime"></span>
                     </span>               
                 </div>
                 <div class="payment">
-                  <div>${{task.total}}</div>   
+                  <div>{{pitch.total}}</div>   
+                  <span class="label status open">open</div>   
                 </div>
           </div>        
           <div class="list-group-separator"></div>
@@ -29,7 +31,65 @@
 
       </div>
     </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="col-md-6">
+      <div ng-show="listMode">
+        <H2>Hello this is the right side, not img</H2>
+      </div>
+      
+      <div ng-show="!listMode">
+
+        <!-- HEADER -->
+        <div class="row">
+          <div class="col-md-8">
+            <h3>Pitch title here{{ selectedPitch.title }}</h3>
+            <span>
+              Posted by pitcher {{selectedPitch.name}} -
+              <span am-time-ago="selectedPitch.datetime"></span>&nbsp;
+              <span class="label status open">Open</span>
+            </span>               
+          </div>
+          
+          <div class="col-md-4 title">
+            <div class="price-tag">
+            $150
+
+              <div ng-show="true">
+                <div class="btn-group">
+                    <a href="" class="btn btn-warning">Admin</a>
+                    <a href="" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="" data-toggle="modal" data-target="#ediModal">EDIT PITCH</a></li>                     
+                        <li class="divider"></li>
+                        <li><a href="" ng-click="">CANCEL PITCH</a></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <!-- DESCRIPTION -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Description</h3>
+                </div>
+                <div class="panel-body">
+                    pitch description {{ selectedPitch.description }}
+                </div>
+            </div>      
+          </div>  
+        </div>
+
+    </div>
   </div>
 </div>
+
+<div ng-include="'views/partials/edit.html'"></div>>
 
 

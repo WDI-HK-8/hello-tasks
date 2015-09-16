@@ -11,6 +11,15 @@ a, a:hover, a:focus {
 }
 
 
+
+/* Form */
+
+.auth-forms {
+  max-width:400px;
+  margin:0 auto;  
+  padding:1px 25px 25px 25px;
+}
+
 /* Nav Bar */
 
 .navbar {
@@ -21,10 +30,43 @@ a, a:hover, a:focus {
   text-align: center;
 }
 
-/*.img-circle.gravatar {
+.img-circle.gravatar {
   width: 30px;
-}*/
+}
 
+/* Panel */
+
+.panel-title {
+  font-weight: bold;
+}
+
+.img-browse {
+  padding-top: 30px;
+}
+
+.panel-success > .panel-heading .badge {
+  color: #0F9D58;
+  background-color: #FFFFFF;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.panel-warning > .panel-heading .badge {
+  color: #FF5722;
+  background-color: #FFFFFF;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+/* Task Header */
+
+.price-tag {
+  font-size: 40px;
+  font-weight: 300;  
+  margin-top: 20px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
 
 /* Task List */
 
@@ -77,11 +119,4 @@ a, a:hover, a:focus {
   background-color: #03a9f4;
 }
 
-.assigned {
-  background-color: #9e9e9e;
-}
-
-.completed {
-  background-color: #9e9e9e;
-}
 
